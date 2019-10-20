@@ -76,7 +76,6 @@ export default {
     modules: [
         '@nuxtjs/axios',
         ['@nuxtjs/dotenv', { systemvars: true }],
-        'nuxt-webfontloader'
     ],
 
     /*
@@ -95,15 +94,6 @@ export default {
     */
     generate: {
         fallback: 'index.html'
-    },
-
-    /*
-    ** Webfontloader
-    */
-    webfontloader: {
-        google: {
-            families: ['Source+Sans+Pro:300,400,600&display=swap']
-        }
     },
 
     /*
