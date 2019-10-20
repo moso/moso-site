@@ -1,6 +1,6 @@
 # moso-site
 
-> Brutalist Webdesign meets Nuxt.js
+> Brutalist Web Design meets Nuxt.js
 
 #### My intepretation of 'Brutalist Web Design'.
 
