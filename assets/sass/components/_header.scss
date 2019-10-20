@@ -1,0 +1,21 @@
+// Header
+header {
+    display: flex; // Applying flex here to have it appear like a modern `nav`
+    align-items: center; // Centring the items vertically - one of my favorite things about flexbox
+
+    // Logo
+    svg {
+        height: 33px;
+    }
+
+    .links {
+        display: flex; // I could opt for `display: inline-block` on the `li`'s, however I like flex better, as I can control alignment better
+        margin: 0 0 0 auto; // Right-align the menu
+        padding: 0; // Remove standard 40px padding-left
+        list-style: none; // Remove the discs
+
+        li {
+            margin-left: .5rem; // Small margin between items. Normally I'd `margin-right` it, and `margin: 0` on `&:last-of-type`, but let's keep it simple
+        }
+    }
+}
