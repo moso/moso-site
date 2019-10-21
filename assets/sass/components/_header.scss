@@ -15,7 +15,11 @@ header {
         list-style: none; // Remove the discs
 
         li {
-            margin-left: .5rem; // Small margin between items. Normally I'd `margin-right` it, and `margin: 0` on `&:last-of-type`, but let's keep it simple
+            margin-left: .5rem; // Small margin between items
+
+            .active {
+                font-weight: 700; // Bold active to distinguish active page from normal link
+            }
         }
     }
 }
