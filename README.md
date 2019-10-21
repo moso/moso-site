@@ -16,8 +16,8 @@ but that's not the idea behind Brutalist Web Design.
 Source: https://brutalist-web.design
 
 The core styling for this site, not counting scoped styling for Vue components:
-- 682 bytes when minified
-- 384 bytes when gzipped
+- 725 bytes when minified
+- 399 bytes when gzipped
 
 Yes *bytes*.
 
