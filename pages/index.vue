@@ -1,15 +1,15 @@
 <template>
-    <profile />
+    <moso-profile />
 </template>
 
 <script>
-import Profile from '~/pages/profile.vue'
+import MosoProfile from '~/pages/profile.vue'
 
 export default {
     layout: 'default',
 
     components: {
-        'profile': Profile
+        'moso-profile': MosoProfile
     },
 
     data() {
@@ -29,7 +29,3 @@ export default {
     }
 }
 </script>
-
-<style>
-
-</style>
