@@ -74,8 +74,8 @@ export default {
     ** Modules
     */
     modules: [
-        '@nuxtjs/axios',
         ['@nuxtjs/dotenv', { systemvars: true }],
+        '@nuxtjs/router'
     ],
 
     /*
