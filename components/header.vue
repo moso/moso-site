@@ -6,10 +6,10 @@
             </g>
         </svg>
         <ul class="links">
-            <li><nuxt-link to="/profile">Profile</nuxt-link></li>
+            <li><nuxt-link to="/profile" :class="{'active': $route.fullPath ==='/' || $route.fullPath === '/profile'}">Profile</nuxt-link></li>
             <li><nuxt-link to="/cv">CV</nuxt-link></li>
             <li><nuxt-link to="/projects">Projects</nuxt-link></li>
-            <li><a href="https://moso.dev" target="_blank" rel="noopener">Blog</li>
+            <li><a href="https://moso.dev" target="_blank" rel="noopener">Blog</a></li>
         </ul>
     </header>
 </template>
