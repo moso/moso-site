@@ -32,16 +32,22 @@ ul {
     padding: 0;
     list-style: none;
 
+    @media (min-width: 768px) {
+        display: flex;
+    }
+
     li {
         display: flex;
         align-items: center;
         height: 18px;
 
         &:first-of-type {
-            margin: 0 0 .2rem;
+            @media (max-width: 767px) {
+                margin: 0 0 .25rem;
+            }
 
             a {
-                margin: 0 0 0 .25rem;
+                margin: 0 0 0 .5rem;
             }
         }
 
@@ -60,6 +66,16 @@ ul {
                     width: auto;
                     margin: 0 .2rem;
                 }
+
+                &:last-of-type {
+                    svg {
+                        margin: 0 0 0 .2rem;
+                    }
+                }
+            }
+
+            @media (min-width: 768px) {
+                margin-left: auto;
             }
         }
     }
