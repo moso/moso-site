@@ -100,7 +100,7 @@ export default {
     ** Plugins
     */
     plugins: [
-        //
+        '~/plugins/vue-cookies'
     ],
 
     /*
