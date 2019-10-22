@@ -1,7 +1,8 @@
 <template>
     <li>
         <a :href="link" class="icon-button" :class="linkClass" target="_blank" rel="noopener" :title="title">
-            <img v-if="svg" :src="svg" :alt="title">
+            <!-- eslint-disable-next-line vue/no-v-html -->
+            <span v-if="svg" v-html="svg"></span>
         </a>
     </li>
 </template>
