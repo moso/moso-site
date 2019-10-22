@@ -11,7 +11,7 @@
                 </a>
                 and
                 <a href="https://nuxtjs.org" target="_blank" rel="noopener" title="Nuxt.js">
-                    <svg viewBox="0 0 400 400" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <svg viewBox="0 0 400 400" version="1.1" xmlns="http://www.w3.org/2000/svg" class="nuxt">
                         <g transform="translate(0 49)" fill="none" fill-rule="evenodd">
                             <path d="M123 292l-1-1c-2-4-2-8-2-12H25L167 27l59 107 19-14-59-107c-1-2-8-13-20-13-5 0-13 2-19 13L4 268c-1 2-7 14-1 24 2 5 8 10 21 10h120c-13 0-19-5-21-10z" fill="#00C58E"/>
                             <path d="M395 269L280 62c-2-2-8-13-20-13-5 0-12 2-19 13l-15 24v48l34-59 114 204h-43a20 20 0 0 1-2 12v1c-6 10-19 10-21 10h68c2 0 15 0 21-10 2-5 4-13-2-23z" fill="#108775"/>
