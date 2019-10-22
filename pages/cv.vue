@@ -15,6 +15,24 @@
         <ul class="list flexlist">
             <li v-for="tool in tools" :key="tool.id">{{ tool.item }}</li>
         </ul>
+
+        <h2>Contact</h2>
+        <div class="code-highlight">
+            <div>
+                <span class="blue">let</span>
+                $x =
+                <span class="green">'morten'</span>
+            </div>
+            <div>
+                <span class="blue">let</span>
+                $y =
+                <span class="green">'moso'</span>
+            </div>
+            <div>&nbsp;</div>
+            <div>
+                console.log($x + <span class="green">'@'</span> + $y + <span class="green">'.io'</span>)
+            </div>
+        </div>
     </article>
 </template>
 
@@ -108,6 +126,21 @@ export default {
 article > .list {
     &:last-of-type {
         margin: 0;
+    }
+}
+
+.code-highlight {
+    padding: .75rem;
+    background-color: #f6f8fa;
+    font-family: monospace;
+    font-size: 80%;
+
+    .blue {
+        color: #81A1C1;
+    }
+
+    .green {
+        color: #A3BE8C;
     }
 }
 </style>
