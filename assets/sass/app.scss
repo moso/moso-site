@@ -3,7 +3,9 @@
 @import 'mixins';
 @import 'basics';
 
+// Dark mode
+@import 'dark-mode';
+
 // Components
 @import 'components/header';
 @import 'components/footer';
-@import 'components/button';
