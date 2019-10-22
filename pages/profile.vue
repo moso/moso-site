@@ -2,7 +2,7 @@
     <article>
         <div v-for="title in titles" :key="title.id">
             <profile image="/images/profile.jpg" name="Morten Sørensen" :position="title.title">
-                <profile-item v-for="icon in icons" :key="icon.id" :link="icon.url" :link-class="icon.name.toLowerCase().trim()" :svg="icon.svg" :title="icon.name" />
+                <profile-item v-for="icon in icons" :key="icon.id" :link="icon.url" :link-class="icon.name.toLowerCase().trim()" :svg="icon.icon" :title="icon.name" />
             </profile>
         </div>
 
