@@ -1,11 +1,8 @@
 // .env values for Netlify
 export const profileApi = {
     titles: process.env.titles,
-    devicons: process.env.devicons,
-    skills: process.env.skills,
-    profiles: process.env.profiles,
-    infolists: process.env.infolists,
-    tools: process.env.tools
+    icons: process.env.icons,
+    bios: process.env.bios
 }
 
 export const projectsApi = {
@@ -14,7 +11,7 @@ export const projectsApi = {
 
 }
 
-export const resumeApi = {
+export const cvApi = {
     experiences: process.env.experiences,
     educations: process.env.educations
 }
