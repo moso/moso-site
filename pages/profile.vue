@@ -43,7 +43,7 @@ export default {
         }
     },
 
-    async asyncData({ $axios }) {
+    async asyncData({ req, params }) {
         if(process.client) {
             window.performance.mark('getProfile:start')
         }
