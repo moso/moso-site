@@ -12,7 +12,10 @@
 
         <h2>I've also made things for...</h2>
         <ul class="list">
-            <li v-for="project in smallprojects" :key="project.id">{{ project.title }}</li>
+            <li v-for="thing in reverseThings" :key="thing.id">
+                <span>{{ thing.title }}</span>
+                <p>{{ thing.subtitle }}</p>
+            </li>
         </ul>
     </article>
 </template>
@@ -25,21 +28,23 @@ import { projectsApi } from '~/api.config'
 export default {
     layout: 'default',
 
-    components: {
-        //
-    },
-
     data() {
         return {
             pageTitle: 'Projects',
             projects: [],
-            smallprojects: []
+            things: []
         }
     },
 
     head() {
         return {
             title: this.pageTitle + ' - moso.io'
+        }
+    },
+
+    computed: {
+        reverseThings() {
+            return this.things.slice().reverse();
         }
     },
 
@@ -56,7 +61,7 @@ export default {
 
         const [
             { data: projects },
-            { data: smallprojects }
+            { data: things }
         ] = await Promise.all(promises)
 
         if(process.client) {
@@ -65,7 +70,7 @@ export default {
 
         return {
             projects,
-            smallprojects
+            things
         }
     },
 
@@ -82,6 +87,10 @@ export default {
 
     li {
         margin: .625rem 0 0;
+
+        a, span {
+            font-weight: 700;
+        }
 
         p {
             margin: 0;
