@@ -10,6 +10,11 @@
         <ul class="list">
             <li v-for="edu in reverseEdu" :key="edu.id"> {{ edu.year }} <strong>{{ edu.title }}</strong></li>
         </ul>
+
+        <h2>I love working with</h2>
+        <ul class="list flexlist">
+            <li v-for="tool in tools" :key="tool.id">{{ tool.item }}</li>
+        </ul>
     </article>
 </template>
 
@@ -29,7 +34,8 @@ export default {
         return {
             pageTitle: 'CV',
             experiences: [],
-            educations: []
+            educations: [],
+            tools: []
         }
     },
 
@@ -61,7 +67,8 @@ export default {
 
         const [
             { data: experiences },
-            { data: educations }
+            { data: educations },
+            { data: tools }
         ] = await Promise.all(promises)
 
         if(process.client) {
@@ -70,7 +77,8 @@ export default {
 
         return {
             experiences,
-            educations
+            educations,
+            tools
         }
     },
 
@@ -84,15 +92,22 @@ export default {
 .list {
     padding: 0;
     list-style: none;
+    margin: 0 0 2.5rem;
 
     li {
         margin: .625rem 0 0;
     }
+
+    &.flexlist {
+        li {
+            margin: 0;
+        }
+    }
 }
 
 article > .list {
-    &:first-of-type {
-        margin: 0 0 2rem;
+    &:last-of-type {
+        margin: 0;
     }
 }
 </style>
