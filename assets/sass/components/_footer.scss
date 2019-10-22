@@ -3,7 +3,7 @@
 // A remark here.
 // Layout-wise, I could've opted for an `hr` between `main` and `footer`.
 // However, to make the `hr` look like a thin border-top, it would require more styling
-// than just margin, padding, and border-top to footer.
+// than just applying `margin`, `padding`, and `border-top` to `footer`.
 footer {
     border-top: 1px solid $gray;
     margin: 2rem 0 0;
