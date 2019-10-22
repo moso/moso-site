@@ -4,7 +4,6 @@ import Router from 'vue-router'
 import profile from '~/pages/profile.vue'
 import cv from '~/pages/cv.vue'
 import projects from '~/pages/projects.vue'
-// import error from '~/pages/error.vue'
 
 Vue.use(Router)
 
@@ -28,17 +27,7 @@ export function createRouter() {
             {
                 path: '/projects',
                 component: projects,
-            },
-            /*
-            {
-                path: '/404',
-                component: error,
-            },
-            {
-                path: '*',
-                redirect: '404'
             }
-            */
         ]
     })
 }
