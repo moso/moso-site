@@ -23,8 +23,8 @@ body {
     width: 100%; // Stretch all the way
     font-family: sans-serif; // Let the browser (or browser settings) handle which font is used
     font-size: 1rem; // Utilizing the `font-size` set on `html`
-    color: #444; // bettermotherfuckingwebsite.com standards
-    line-height: 1.6; // bettermotherfuckingwebsite.com standards
+    color: #444; // Best of two omens. Source: http://bettermotherfuckingwebsite.com
+    line-height: 1.6; // Source: http://bettermotherfuckingwebsite.com
 
     @media (min-width: 992px) {
         max-width: 38rem; // Max width on larger devices (iPad landscape mode and up)
@@ -45,7 +45,8 @@ a, a:visited {
     }
 }
 
-// Tighter headings for better readability goes a long way
+// Tighter headings for better readability goes a long way.
+// Source: http://bettermotherfuckingwebsite.com
 h1, h2 {
     line-height: 1.2;
 }
