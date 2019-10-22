@@ -1,1 +1,40 @@
 // Dark mode
+body {
+    &.darkmode {
+        background-color: $dark;
+        color: $light;
+
+        header {
+            .logo {
+                path {
+                    fill: $light;
+                }
+            }
+        }
+
+        .profile {
+            .position {
+                color: rgba($light, .45);
+            }
+        }
+
+        li a {
+            &.github,
+            &.codepen {
+                fill: $light;
+            }
+        }
+
+        footer {
+            border-color: lighten($dark, 15%);
+
+            .nuxt {
+                path {
+                    &:last-of-type {
+                        fill: $light;
+                    }
+                }
+            }
+        }
+    }
+}
