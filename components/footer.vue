@@ -19,7 +19,6 @@
                         </g>
                     </svg>
                 </a>
-                &mdash; designed with <a href="https://brutalist-web.design" target="_blank" rel="noopener" title="Brutalism">Brutalism</a> in mind.
             </li>
         </ul>
     </footer>
@@ -48,24 +47,18 @@ ul {
 
         &:last-of-type {
             a {
-                &:not(:last-of-type) {
-                    display: flex;
-                    align-items: center;
+                display: flex;
+                align-items: center;
+                text-decoration: none;
+
+                @include hover-state {
                     text-decoration: none;
-
-                    @include hover-state {
-                        text-decoration: none;
-                    }
-
-                    svg {
-                        height: 18px;
-                        width: auto;
-                        margin: 0 .2rem;
-                    }
                 }
 
-                &:last-of-type {
-                    margin: 0 .25rem;
+                svg {
+                    height: 18px;
+                    width: auto;
+                    margin: 0 .2rem;
                 }
             }
         }
