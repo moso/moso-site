@@ -20,17 +20,19 @@
         <div class="code-highlight">
             <div>
                 <span class="blue">let</span>
-                $x =
+                $x
+                <span class="blue">=</span>
                 <span class="green">'morten'</span>
             </div>
             <div>
                 <span class="blue">let</span>
-                $y =
+                $y
+                <span class="blue">=</span>
                 <span class="green">'moso'</span>
             </div>
             <div>&nbsp;</div>
             <div>
-                console.log($x + <span class="green">'@'</span> + $y + <span class="green">'.io'</span>)
+                <span class="teal">console</span><span class="blue">.</span><span class="light-blue">log(</span>$x + <span class="green">'@'</span> + $y + <span class="green">'.io'</span><span class="light-blue">)</span>
             </div>
         </div>
     </article>
@@ -107,6 +109,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import './assets/sass/variables';
+
 .list {
     padding: 0;
     list-style: none;
@@ -131,16 +135,24 @@ article > .list {
 
 .code-highlight {
     padding: .75rem;
-    background-color: #f6f8fa;
+    background-color: $code-light;
     font-family: monospace;
     font-size: 80%;
 
     .blue {
-        color: #81A1C1;
+        color: $code-blue;
+    }
+
+    .light-blue {
+        color: $code-light-blue;
     }
 
     .green {
-        color: #A3BE8C;
+        color: $code-green;
+    }
+
+    .teal {
+        color: $code-teal;
     }
 }
 </style>
