@@ -1,9 +1,9 @@
 <template>
     <article>
-        <div v-for="title in titles" :key="title.id">
-            <profile image="/images/profile.jpg" name="Morten Sørensen" :position="title.title">
-                <profile-item v-for="icon in icons" :key="icon.id" :link="icon.url" :link-class="icon.name.toLowerCase().trim()" :svg="icon.icon" :title="icon.name" />
-            </profile>
+        <div v-for="title in titles" :key="title.id" class="profile-picture">
+            <img src="/images/profile.jpg" alt="Morten Sørensen" />
+            <div class="name">Morten S&oslash;rensen</div>
+            <div class="position">{{ title.title }}</div>
         </div>
 
         <h1 class="hidden">{{ pageTitle }}</h1>
@@ -15,24 +15,15 @@
 <script>
 import axios from 'axios'
 
-import Profile from '~/components/profile/profile.vue'
-import ProfileItem from '~/components/profile/profile-item.vue'
-
 import { profileApi } from '~/api.config'
 
 export default {
     layout: 'default',
 
-    components: {
-        'profile': Profile,
-        'profile-item': ProfileItem
-    },
-
     data() {
         return {
             pageTitle: 'Profile',
             titles: [],
-            icons: [],
             bios: []
         }
     },
@@ -56,7 +47,6 @@ export default {
 
         const [
             { data: titles },
-            { data: icons },
             { data: bios }
         ] = await Promise.all(promises)
 
@@ -66,7 +56,6 @@ export default {
 
         return {
             titles,
-            icons,
             bios
         }
     },
@@ -78,6 +67,32 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import './assets/sass/variables';
+
+.profile-picture {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1.5rem;
+
+    img {
+        width: 125px;
+        height: auto;
+        border-radius: 50%;
+        border: 2px solid $gray;
+    }
+
+    .name {
+        margin: .625rem 0 0;
+        font-size: 1.125rem;
+    }
+
+    .position {
+        font-size: .8125rem;
+        color: rgba(#444,.54);
+    }
+}
+
 article {
     display: flex;
     flex-direction: column;
