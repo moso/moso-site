@@ -1,15 +1,20 @@
 <template>
     <footer>
-        <ul>
-            <li>&copy; 2015 - {{ new Date().getFullYear() }} <nuxt-link to="/">Morten S&oslash;rensen</nuxt-link>.</li>
+        <ul class="footer-icons">
+            <li v-for="icon in icons" :key="icon.id">
+                <!-- eslint-disable-next-line vue/no-v-html -->
+                <a :href="icon.url" :class="icon.name.toLowerCase().trim()" target="_blank" :title="icon.name" v-html="icon.icon"></a>
+            </li>
+        </ul>
+        <ul class="made-with">
             <li>
-                Made with
+                <span>Made with</span>
                 <a href="" title="Love">
                     <svg viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
                         <path fill="red" d="M12.1,18.55L12,18.65L11.89,18.55C7.14,14.24 4,11.39 4,8.5C4,6.5 5.5,5 7.5,5C9.04,5 10.54,6 11.07,7.36H12.93C13.46,6 14.96,5 16.5,5C18.5,5 20,6.5 20,8.5C20,11.39 16.86,14.24 12.1,18.55M16.5,3C14.76,3 13.09,3.81 12,5.08C10.91,3.81 9.24,3 7.5,3C4.42,3 2,5.41 2,8.5C2,12.27 5.4,15.36 10.55,20.03L12,21.35L13.45,20.03C18.6,15.36 22,12.27 22,8.5C22,5.41 19.58,3 16.5,3Z" />
                     </svg>
                 </a>
-                and
+                <span>and</span>
                 <a href="https://nuxtjs.org" target="_blank" rel="noopener" title="Nuxt.js">
                     <svg viewBox="0 0 400 400" version="1.1" xmlns="http://www.w3.org/2000/svg" class="nuxt">
                         <g transform="translate(0 49)" fill="none" fill-rule="evenodd">
@@ -24,58 +29,75 @@
     </footer>
 </template>
 
+<script>
+import axios from 'axios'
+
+import { footerApi } from '~/api.config'
+
+export default {
+    data() {
+        return {
+            icons: []
+        }
+    },
+
+    mounted() {
+        this.fetchData()
+    },
+
+    methods: {
+        fetchData() {
+            axios.get(`${footerApi}`)
+            .then(res => {
+                this.icons = res.data
+            })
+        }
+    }
+}
+</script>
+
 <style lang="scss" scoped>
 @import './assets/sass/mixins';
 
-ul {
+.footer-icons {
+    display: flex;
+    justify-content: center;
+    margin: 0 0 .5rem;
+    padding: 0;
+    list-style: none;
+
+    li {
+        margin: 0 .35rem;
+        height: 32px;
+        width: 32px;
+    }
+}
+
+.made-with {
+    display: flex;
+    justify-content: center;
     margin: 0;
     padding: 0;
     list-style: none;
 
-    @media (min-width: 768px) {
-        display: flex;
+    svg {
+        width: 18px;
+        height: 18px;
+        margin: 0 .3rem;
     }
 
     li {
         display: flex;
         align-items: center;
-        height: 18px;
 
-        &:first-of-type {
-            @media (max-width: 767px) {
-                margin: 0 0 .25rem;
-            }
+        a {
+            display: flex;
+            align-items: center;
 
-            a {
-                margin: 0 0 0 .5rem;
-            }
-        }
-
-        &:last-of-type {
-            a {
-                display: flex;
-                align-items: center;
-                text-decoration: none;
-
-                @include hover-state {
-                    text-decoration: none;
-                }
-
+            &:last-of-type {
                 svg {
-                    height: 18px;
-                    width: auto;
-                    margin: 0 .2rem;
+                    margin: 0 .3rem 0 .5rem;
                 }
-
-                &:last-of-type {
-                    svg {
-                        margin: 0 0 0 .2rem;
-                    }
-                }
-            }
-
-            @media (min-width: 768px) {
-                margin-left: auto;
             }
         }
     }
