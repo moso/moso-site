@@ -7,11 +7,12 @@ export const profileApi = {
 
 export const projectsApi = {
     projects: process.env.projects,
-    smallprojects: process.env.smallprojects
+    things: process.env.things
 
 }
 
 export const cvApi = {
     experiences: process.env.experiences,
-    educations: process.env.educations
+    educations: process.env.educations,
+    tools: process.env.tools
 }
