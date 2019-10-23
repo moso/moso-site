@@ -75,6 +75,7 @@ export default {
     */
     modules: [
         ['@nuxtjs/dotenv', { systemvars: true }],
+        '@nuxtjs/netlify-files',
         '@nuxtjs/router'
     ],
 
@@ -89,11 +90,15 @@ export default {
         '/api/': { target: 'http://api.morten.is', pathRewrite: {'^/api/': ''} }
     },
 
+    netlifyFiles: {
+        existingFilesDirectory: './netlify'
+    },
+
     /*
     ** Routes
     */
     generate: {
-        fallback: 'index.html'
+        fallback: true
     },
 
     /*
