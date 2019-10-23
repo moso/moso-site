@@ -12,7 +12,7 @@ body {
             }
         }
 
-        .profile {
+        .profile-picture {
             .position {
                 color: rgba($light, .45);
             }
@@ -26,8 +26,8 @@ body {
         }
 
         .code-highlight {
-            background-color: #2E3440;
-            color: #d8dee9
+            background-color: $code-dark;
+            color: $light;
         }
 
         footer {
