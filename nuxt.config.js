@@ -35,7 +35,7 @@ export default {
     },
 
     generate: {
-        fallback: '404.html'
+        fallback: 'index.html'
     },
 
     plugins: [
