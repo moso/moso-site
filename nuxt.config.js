@@ -22,18 +22,13 @@ export default {
 
     modules: [
         ['@nuxtjs/dotenv', { systemvars: true }],
-        '@nuxtjs/netlify-files',
-        '@nuxtjs/pwa',
-        '@nuxtjs/router'
+        '@nuxtjs/pwa'
     ],
 
-    axios: {
-        proxy: true
-    },
-
-    proxy: {
-        '/api/': { target: 'http://api.morten.is', pathRewrite: {'^/api/': ''} }
-    },
+    buildModules: [
+        '@nuxtjs/netlify-files',
+        '@nuxtjs/router'
+    ],
 
     netlifyFiles: {
         existingFilesDirectory: './netlify'
