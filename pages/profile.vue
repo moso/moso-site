@@ -77,7 +77,7 @@ export default {
 
     img {
         width: 125px;
-        height: auto;
+        height: 125px;
         border-radius: 50%;
         border: 2px solid $gray;
     }
