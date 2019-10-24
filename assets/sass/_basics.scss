@@ -38,7 +38,7 @@ body {
 a, a:visited {
     color: $ie-blue; // IE
     color: -webkit-link; // Chrome, Safari, Opera
-    color: -moz-hyderlinkText; // Firefox
+    color: -moz-hyperlinkText; // Firefox
 
     @include hover-state {
         color: inherit; // Inherit default text color on hover
