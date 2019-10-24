@@ -76,14 +76,13 @@ export default {
 .made-with {
     display: flex;
     justify-content: center;
-    margin: 0;
+    margin: 1rem 0 0;
     padding: 0;
     list-style: none;
 
     svg {
         width: 18px;
         height: 18px;
-        margin: 0 .3rem;
     }
 
     li {
@@ -93,11 +92,10 @@ export default {
         a {
             display: flex;
             align-items: center;
+            margin: 0 .3rem;
 
             &:last-of-type {
-                svg {
-                    margin: 0 .3rem 0 .5rem;
-                }
+                margin: 0 .3rem 0 .5rem;
             }
         }
     }
