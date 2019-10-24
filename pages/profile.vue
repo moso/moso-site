@@ -89,7 +89,6 @@ export default {
 
     .position {
         font-size: .8125rem;
-        color: rgba(#444,.54);
     }
 }
 
