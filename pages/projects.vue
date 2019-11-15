@@ -4,7 +4,7 @@
 
         <h2>Open-source</h2>
         <ul class="list">
-            <li v-for="project in projects" :key="project.id">
+            <li v-for="(project, index) in projects" :key="+index.id">
                 <a :href="project.url" target="_blank" rel="noopener" :title="project.title">{{ project.title }}</a>
                 <p>{{ project.subtitle }}</p>
             </li>
@@ -12,7 +12,7 @@
 
         <h2>I've also made things for...</h2>
         <ul class="list">
-            <li v-for="thing in reverseThings" :key="thing.id">
+            <li v-for="(thing, index) in reverseThings" :key="+index.id">
                 <span>{{ thing.title }}</span>
                 <p>{{ thing.subtitle }}</p>
             </li>
@@ -21,61 +21,45 @@
 </template>
 
 <script>
-import axios from 'axios'
-
-import { projectsApi } from '~/api.config'
-
 export default {
     layout: 'default',
+
+    async fetch({ store, error }) {
+        try {
+            await store.dispatch('getProjects')
+            await store.dispatch('getThings')
+        } catch(err) {
+            error({
+                statusCode: 500,
+                message: err.message
+            })
+        }
+    },
 
     data() {
         return {
             pageTitle: 'Projects',
-            projects: [],
-            things: []
         }
+    },
+
+    computed: {
+        projects() {
+            return this.$store.state.projects
+        },
+
+        reverseThings() {
+            return this.$store.state.things.slice().reverse();
+        }
+    },
+
+    mounted() {
+        this.$store.commit('SET_PAGE_TITLE', this.pageTitle)
     },
 
     head() {
         return {
             title: this.pageTitle + ' - moso.io'
         }
-    },
-
-    computed: {
-        reverseThings() {
-            return this.things.slice().reverse();
-        }
-    },
-
-    async asyncData({ req, params }) {
-        if(process.client) {
-            window.performance.mark('getProjects:start')
-        }
-
-        const promises = []
-        /* eslint-disable-next-line no-unused-vars */
-        for (const [key, value] of Object.entries(projectsApi)) {
-            promises.push(axios.get(`${value}`))
-        }
-
-        const [
-            { data: projects },
-            { data: things }
-        ] = await Promise.all(promises)
-
-        if(process.client) {
-            window.performance.mark('getProjects:end')
-        }
-
-        return {
-            projects,
-            things
-        }
-    },
-
-    mounted() {
-        this.$store.commit('SET_PAGE_TITLE', this.pageTitle)
     }
 }
 </script>
