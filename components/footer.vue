@@ -43,7 +43,7 @@ export default {
 
     methods: {
         async fetchData() {
-            const icons = await this.$axios.$get(`${process.env.icons}`)
+            const icons = await this.$axios.$get(process.env.icons)
             this.icons = icons
         }
     }

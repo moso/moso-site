@@ -50,37 +50,37 @@ export const mutations = {
 
 export const actions = {
     async getTitles({ commit }) {
-        const titles = await this.$axios.$get(`${process.env.titles}`)
+        const titles = await this.$axios.$get(process.env.titles)
         commit('setTitles', titles)
     },
 
     async getBios({ commit }) {
-        const bios = await this.$axios.$get(`${process.env.bios}`)
+        const bios = await this.$axios.$get(process.env.bios)
         commit('setBios', bios)
     },
 
     async getExperiences({ commit }) {
-        const experiences = await this.$axios.$get(`${process.env.experiences}`)
+        const experiences = await this.$axios.$get(process.env.experiences)
         commit('setExperiences', experiences)
     },
 
     async getEducations({ commit }) {
-        const educations = await this.$axios.$get(`${process.env.educations}`)
+        const educations = await this.$axios.$get(process.env.educations)
         commit('setEducations', educations)
     },
 
     async getProjects({ commit }) {
-        const projects = await this.$axios.$get(`${process.env.projects}`)
+        const projects = await this.$axios.$get(process.env.projects)
         commit('setProjects', projects)
     },
 
     async getThings({ commit }) {
-        const things = await this.$axios.$get(`${process.env.things}`)
+        const things = await this.$axios.$get(process.env.things)
         commit('setThings', things)
     },
 
     async getIcons({ commit }) {
-        const icons = await this.$axios.$get(`${process.env.icons}`)
+        const icons = await this.$axios.$get(process.env.icons)
         commit('setIcons', icons)
     }
 }
