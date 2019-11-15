@@ -1,6 +1,6 @@
 <template>
     <article>
-        <div v-for="title in titles" :key="title.id" class="profile-picture">
+        <div v-for="(title, index) in titles" :key="+index.id" class="profile-picture">
             <img src="/images/profile.jpg" alt="Morten Sørensen" />
             <div class="name">Morten S&oslash;rensen</div>
             <div class="position">{{ title.title }}</div>
@@ -8,60 +8,50 @@
 
         <h1 class="hidden">{{ pageTitle }}</h1>
         <!-- eslint-disable-next-line vue/no-v-html -->
-        <div v-for="bio in bios" :key="bio.id" v-html="bio.text"></div>
+        <div v-for="(bio, index) in bios" :key="+index.id" v-html="bio.text"></div>
     </article>
 </template>
 
 <script>
-import axios from 'axios'
-
-import { profileApi } from '~/api.config'
-
 export default {
     layout: 'default',
+
+    async fetch({ store, error }) {
+        try {
+            await store.dispatch('getTitles')
+            await store.dispatch('getBios')
+        } catch(err) {
+            error({
+                statusCode: 500,
+                message: err.message
+            })
+        }
+    },
 
     data() {
         return {
             pageTitle: 'Profile',
-            titles: [],
-            bios: []
         }
+    },
+
+    computed: {
+        titles() {
+            return this.$store.state.titles
+        },
+
+        bios() {
+            return this.$store.state.bios
+        }
+    },
+
+    mounted() {
+        this.$store.commit('SET_PAGE_TITLE', this.pageTitle)
     },
 
     head() {
         return {
             title: this.pageTitle + ' - moso.io'
         }
-    },
-
-    async asyncData({ req, params }) {
-        if(process.client) {
-            window.performance.mark('getProfile:start')
-        }
-
-        const promises = []
-        // eslint-disable-next-line no-unused-vars
-        for (const [key, value] of Object.entries(profileApi)) {
-            promises.push(axios.get(`${value}`))
-        }
-
-        const [
-            { data: titles },
-            { data: bios }
-        ] = await Promise.all(promises)
-
-        if(process.client) {
-            window.performance.mark('getProfile:end')
-        }
-
-        return {
-            titles,
-            bios
-        }
-    },
-
-    mounted() {
-        this.$store.commit('SET_PAGE_TITLE', this.pageTitle)
     }
 }
 </script>
