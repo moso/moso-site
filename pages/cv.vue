@@ -3,17 +3,17 @@
         <h1>{{ pageTitle }}</h1>
         <h2>Experience</h2>
         <ul class="list">
-            <li v-for="exp in reverseExp" :key="exp.id"> {{ exp.period }} <strong>{{ exp.title }}</strong> &#64;{{ exp.location }}</li>
+            <li v-for="(exp, index) in reverseExp" :key="+index.id"> {{ exp.period }} <strong>{{ exp.title }}</strong> &#64;{{ exp.location }}</li>
         </ul>
 
         <h2>Education</h2>
         <ul class="list">
-            <li v-for="edu in reverseEdu" :key="edu.id"> {{ edu.year }} <strong>{{ edu.title }}</strong></li>
+            <li v-for="(edu, index) in reverseEdu" :key="+index.id"> {{ edu.year }} <strong>{{ edu.title }}</strong></li>
         </ul>
 
         <h2>I love working with</h2>
         <ul class="list flexlist">
-            <li v-for="tool in tools" :key="tool.id">{{ tool.item }}</li>
+            <li v-for="(tool, index) in tools" :key="+index.id">{{ tool.item }}</li>
         </ul>
 
         <h2>Contact</h2>
@@ -39,71 +39,50 @@
 </template>
 
 <script>
-import axios from 'axios'
-
-import { cvApi } from '~/api.config'
-
 export default {
     layout: 'default',
 
-    components: {
-        //
+    async fetch({ store, error }) {
+        try {
+            await store.dispatch('getExperiences')
+            await store.dispatch('getEducations')
+            await store.dispatch('getTools')
+        } catch(err) {
+            error({
+                statusCode: 500,
+                message: err.message
+            })
+        }
     },
 
     data() {
         return {
             pageTitle: 'CV',
-            experiences: [],
-            educations: [],
-            tools: []
         }
+    },
+
+    computed: {
+        reverseExp() {
+            return this.$store.state.experiences.slice().reverse();
+        },
+
+        reverseEdu() {
+            return this.$store.state.educations.slice().reverse();
+        },
+
+        tools() {
+            return this.$store.state.tools
+        }
+    },
+
+    mounted() {
+        this.$store.commit('SET_PAGE_TITLE', this.pageTitle)
     },
 
     head() {
         return {
             title: this.pageTitle + ' - moso.io'
         }
-    },
-
-    computed: {
-        reverseExp() {
-            return this.experiences.slice().reverse();
-        },
-        reverseEdu() {
-            return this.educations.slice().reverse();
-        }
-    },
-
-    async asyncData({ req, params }) {
-        if(process.client) {
-            window.performance.mark('getCv:start')
-        }
-
-        const promises = []
-        // eslint-disable-next-line no-unused-vars
-        for (const [key, value] of Object.entries(cvApi)) {
-            promises.push(axios.get(`${value}`))
-        }
-
-        const [
-            { data: experiences },
-            { data: educations },
-            { data: tools }
-        ] = await Promise.all(promises)
-
-        if(process.client) {
-            window.performance.mark('getCv:end')
-        }
-
-        return {
-            experiences,
-            educations,
-            tools
-        }
-    },
-
-    mounted() {
-        this.$store.commit('SET_PAGE_TITLE', this.pageTitle)
     }
 }
 </script>
