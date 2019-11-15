@@ -1,4 +1,4 @@
-import { build, dev, env, manifest, meta } from './config'
+import { build, dev, manifest, meta } from './config'
 
 require('dotenv').config()
 
@@ -21,6 +21,7 @@ export default {
     },
 
     modules: [
+        '@nuxtjs/axios',
         ['@nuxtjs/dotenv', { systemvars: true }],
         '@nuxtjs/pwa'
     ],
@@ -39,12 +40,10 @@ export default {
     },
 
     plugins: [
-        '~/plugins/vue-cookies'
+        //
     ],
 
     manifest,
 
-    build,
-
-    env
+    build
 }
