@@ -1,4 +1,4 @@
-import { build, dev, manifest, meta } from './config'
+import { build, dev, env, manifest, meta } from './config'
 
 require('dotenv').config()
 
@@ -42,6 +42,8 @@ export default {
     plugins: [
         //
     ],
+
+    env,
 
     manifest,
 
