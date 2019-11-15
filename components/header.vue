@@ -33,10 +33,10 @@ export default {
     },
 
     mounted() {
-        if(this.$cookies.get('_darkmode') === 'enabled') {
+        if(localStorage.getItem('_darkmode') === 'enabled') {
             document.querySelector('body').classList.add('darkmode')
             this.darkmode = true
-        } else if(document.querySelector('body').classList.contains('darkmode') && (this.$cookies.get('_darkmode') === false || this.$cookies.get('_darkmode') == null)) {
+        } else if(document.querySelector('body').classList.contains('darkmode') && (localStorage.getItem('_darkmode') === false || localStorage.getItem('_darkmode') == null)) {
             document.querySelector('body').classList.remove('darkmode')
             this.darkmode = false
         } else {
@@ -49,22 +49,22 @@ export default {
             document.querySelector('body').classList.add('darkmode')
             this.darkmode = true
             this.$emit('dark')
-            this.$cookies.set('_darkmode', 'enabled', 'session')
+            localStorage.setItem('_darkmode', 'enabled')
         },
 
         day() {
             document.querySelector('body').classList.remove('darkmode')
             this.darkmode = false
             this.$emit('day')
-            this.$cookies.remove('_darkmode')
+            localStorage.removeItem('_darkmode')
         },
 
-        checkCookie() {
-            this.$cookies.get('_darkmode')
+        checkStorage() {
+            localStorage.getItem('_darkmode')
         },
 
         modeToggle() {
-            if(this.darkmode || document.querySelector('body').classList.contains('darkmode') || this.checkCookie() === 'enabled') {
+            if(this.darkmode || document.querySelector('body').classList.contains('darkmode') || this.checkStorage() === 'enabled') {
                 this.day()
             } else {
                 this.night()
