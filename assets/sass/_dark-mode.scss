@@ -4,18 +4,19 @@ body {
         background-color: $dark;
         color: $light;
 
+        a, a:visited {
+            color: lighten($ie-blue, 10%);
+
+            @include hover-state {
+                color: inherit; // Inherit default text color on hover
+            }
+        }
+
         header {
             .logo {
                 path {
                     fill: $light;
                 }
-            }
-        }
-
-        li a {
-            &.github,
-            &.codepen {
-                fill: $light;
             }
         }
 
@@ -27,7 +28,7 @@ body {
         footer {
             border-color: lighten($dark, 15%);
 
-            .nuxt {
+            .nuxt, .github, .codepen {
                 path {
                     &:last-of-type {
                         fill: $light;
