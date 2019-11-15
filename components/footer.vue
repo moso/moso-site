@@ -3,7 +3,7 @@
         <ul class="footer-icons">
             <li v-for="icon in icons" :key="icon.id">
                 <!-- eslint-disable-next-line vue/no-v-html -->
-                <a :href="icon.url" :class="icon.name.toLowerCase().trim()" target="_blank" :title="icon.name" :aria-label="icon.name" rel="noopener" v-html="icon.icon"></a>
+                <a :href="icon.url"  target="_blank" :title="icon.name" :aria-label="icon.name" rel="noopener" v-html="icon.icon"></a>
             </li>
         </ul>
         <ul class="made-with">
@@ -30,10 +30,6 @@
 </template>
 
 <script>
-import axios from 'axios'
-
-import { footerApi } from '~/api.config'
-
 export default {
     data() {
         return {
@@ -46,19 +42,15 @@ export default {
     },
 
     methods: {
-        fetchData() {
-            axios.get(`${footerApi}`)
-            .then(res => {
-                this.icons = res.data
-            })
+        async fetchData() {
+            const icons = await this.$axios.$get(`${process.env.icons}`)
+            this.icons = icons
         }
     }
 }
 </script>
 
 <style lang="scss" scoped>
-@import './assets/sass/mixins';
-
 .footer-icons {
     display: flex;
     justify-content: center;
