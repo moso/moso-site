@@ -3,17 +3,17 @@
         <h1>{{ pageTitle }}</h1>
         <h2>Experience</h2>
         <ul class="list">
-            <li v-for="(exp, index) in reverseExp" :key="+index.id"> {{ exp.period }} <strong>{{ exp.title }}</strong> &#64;{{ exp.location }}</li>
+            <li v-for="exp in resumePage.experiences" :key="exp.id"> {{ exp.period }} <strong>{{ exp.title }}</strong> &#64;{{ exp.location }}</li>
         </ul>
 
         <h2>Education</h2>
         <ul class="list">
-            <li v-for="(edu, index) in reverseEdu" :key="+index.id"> {{ edu.year }} <strong>{{ edu.title }}</strong></li>
+            <li v-for="edu in resumePage.educations" :key="edu.id"> {{ edu.year }} <strong>{{ edu.title }}</strong></li>
         </ul>
 
         <h2>I love working with</h2>
         <ul class="list flexlist">
-            <li v-for="(tool, index) in tools" :key="+index.id">{{ tool.item }}</li>
+            <li v-for="tool in resumePage.tools" :key="tool.id">{{ tool.item }}</li>
         </ul>
 
         <h2>Contact</h2>
@@ -44,9 +44,7 @@ export default {
 
     async fetch({ store, error }) {
         try {
-            await store.dispatch('getExperiences')
-            await store.dispatch('getEducations')
-            await store.dispatch('getTools')
+            await store.dispatch('getResumePage')
         } catch(err) {
             error({
                 statusCode: 500,
@@ -62,16 +60,8 @@ export default {
     },
 
     computed: {
-        reverseExp() {
-            return this.$store.state.experiences.slice().reverse();
-        },
-
-        reverseEdu() {
-            return this.$store.state.educations.slice().reverse();
-        },
-
-        tools() {
-            return this.$store.state.tools
+        resumePage() {
+            return this.$store.state.resumePage
         }
     },
 
