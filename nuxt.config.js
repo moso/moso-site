@@ -21,7 +21,7 @@ export default {
     },
 
     modules: [
-        '@nuxtjs/axios',
+        '@nuxtjs/apollo',
         ['@nuxtjs/dotenv', { systemvars: true }],
         '@nuxtjs/pwa'
     ],
@@ -30,6 +30,14 @@ export default {
         '@nuxtjs/netlify-files',
         '@nuxtjs/router'
     ],
+
+    apollo: {
+        clientConfigs: {
+            default: {
+                httpEndpoint: process.env.graphqlEndpoint
+            }
+        }
+    },
 
     netlifyFiles: {
         existingFilesDirectory: './netlify'
