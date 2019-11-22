@@ -1,6 +1,6 @@
 <template>
     <article>
-        <div v-for="(title, index) in titles" :key="+index.id" class="profile-picture">
+        <div v-for="title in profilePage.titles" :key="title.id" class="profile-picture">
             <img src="/images/profile.jpg" alt="Morten Sørensen" />
             <div class="name">Morten S&oslash;rensen</div>
             <div class="position">{{ title.title }}</div>
@@ -8,7 +8,7 @@
 
         <h1 class="hidden">{{ pageTitle }}</h1>
         <!-- eslint-disable-next-line vue/no-v-html -->
-        <div v-for="(bio, index) in bios" :key="+index.id" v-html="bio.text"></div>
+        <div v-for="bio in profilePage.bios" :key="bio.id" v-html="bio.text"></div>
     </article>
 </template>
 
@@ -18,8 +18,7 @@ export default {
 
     async fetch({ store, error }) {
         try {
-            await store.dispatch('getTitles')
-            await store.dispatch('getBios')
+            await store.dispatch('getProfilePage')
         } catch(err) {
             error({
                 statusCode: 500,
@@ -35,12 +34,8 @@ export default {
     },
 
     computed: {
-        titles() {
-            return this.$store.state.titles
-        },
-
-        bios() {
-            return this.$store.state.bios
+        profilePage() {
+            return this.$store.state.profilePage
         }
     },
 
