@@ -30,6 +30,8 @@
 </template>
 
 <script>
+import gql from 'graphql-tag'
+
 export default {
     data() {
         return {
@@ -43,8 +45,17 @@ export default {
 
     methods: {
         async fetchData() {
-            const icons = await this.$axios.$get(process.env.icons)
-            this.icons = icons
+            this.icons = await this.$apollo.query({
+                query: gql` {
+                    icons {
+                        id
+                        name
+                        url
+                        icon
+                    }
+                }`
+            })
+            .then(({ data }) => data && data.icons)
         }
     }
 }
