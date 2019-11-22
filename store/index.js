@@ -1,13 +1,7 @@
+import gql from 'graphql-tag'
+
 export const state = () => ({
-    pageTitle: 'Default Title',
-    titles: [],
-    bios: [],
-    experiences: [],
-    educations: [],
-    tools: [],
-    projects: [],
-    things: [],
-    icons: []
+    pageTitle: 'Default Title'
 })
 
 export const mutations = {
@@ -15,72 +9,82 @@ export const mutations = {
         state.pageTitle = title
     },
 
-    setTitles(state, titles) {
-        state.titles = titles
+    setProfilePage(state, profilePage) {
+        state.profilePage = profilePage
     },
 
-    setBios(state, bios) {
-        state.bios = bios
+    setResumePage(state, resumePage) {
+        state.resumePage = resumePage
     },
 
-    setExperiences(state, experiences) {
-        state.experiences = experiences
-    },
-
-    setEducations(state, educations) {
-        state.educations = educations
-    },
-
-    setTools(state, tools) {
-        state.tools = tools
-    },
-
-    setProjects(state, projects) {
-        state.projects = projects
-    },
-
-    setThings(state, things) {
-        state.things = things
-    },
-
-    setIcons(state, icons) {
-        state.icons = icons
+    setProjectsPage(state, projectsPage) {
+        state.projectsPage = projectsPage
     }
 }
 
 export const actions = {
-    async getTitles({ commit }) {
-        const titles = await this.$axios.$get(process.env.titles)
-        commit('setTitles', titles)
+    async getProfilePage({ commit }) {
+        const client = this.app.apolloProvider.defaultClient
+        const pageData = await client.query({
+            query: gql` {
+                titles {
+                    id,
+                    title
+                },
+
+                bios {
+                    id,
+                    text
+                }
+            }`
+        })
+        commit('setProfilePage', pageData.data)
     },
 
-    async getBios({ commit }) {
-        const bios = await this.$axios.$get(process.env.bios)
-        commit('setBios', bios)
+    async getResumePage({ commit }) {
+        const client = this.app.apolloProvider.defaultClient
+        const pageData = await client.query({
+            query: gql` {
+                educations(sort: "id:desc") {
+                    id
+                    year
+                    title
+                },
+
+                experiences(sort: "id:desc") {
+                    id
+                    period
+                    title
+                    location
+                },
+
+                tools {
+                    id
+                    item
+                }
+            }`
+        })
+        commit('setResumePage', pageData.data)
     },
 
-    async getExperiences({ commit }) {
-        const experiences = await this.$axios.$get(process.env.experiences)
-        commit('setExperiences', experiences)
-    },
+    async getProjectsPage({ commit }) {
+        const client = this.app.apolloProvider.defaultClient
+        const pageData = await client.query({
+            query: gql` {
+                projects {
+                    id
+                    title
+                    url
+                    subtitle
+                },
 
-    async getEducations({ commit }) {
-        const educations = await this.$axios.$get(process.env.educations)
-        commit('setEducations', educations)
-    },
-
-    async getProjects({ commit }) {
-        const projects = await this.$axios.$get(process.env.projects)
-        commit('setProjects', projects)
-    },
-
-    async getThings({ commit }) {
-        const things = await this.$axios.$get(process.env.things)
-        commit('setThings', things)
-    },
-
-    async getIcons({ commit }) {
-        const icons = await this.$axios.$get(process.env.icons)
-        commit('setIcons', icons)
+                things(sort: "id:desc") {
+                    id
+                    title
+                    subtitle
+                }
+            }`
+        })
+        commit('setProjectsPage', pageData.data)
     }
 }
