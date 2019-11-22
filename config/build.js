@@ -12,7 +12,8 @@ export default {
 
     babel: {
         plugins: [
-            ['@babel/plugin-proposal-export-namespace-from']
+            ['@babel/plugin-proposal-export-namespace-from'],
+            ['babel-plugin-graphql-tag']
         ]
     }
 }
