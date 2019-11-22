@@ -4,7 +4,7 @@
 
         <h2>Open-source</h2>
         <ul class="list">
-            <li v-for="(project, index) in projects" :key="+index.id">
+            <li v-for="project in projectsPage.projects" :key="project.id">
                 <a :href="project.url" target="_blank" rel="noopener" :title="project.title">{{ project.title }}</a>
                 <p>{{ project.subtitle }}</p>
             </li>
@@ -12,7 +12,7 @@
 
         <h2>I've also made things for...</h2>
         <ul class="list">
-            <li v-for="(thing, index) in reverseThings" :key="+index.id">
+            <li v-for="thing in projectsPage.things" :key="thing.id">
                 <span>{{ thing.title }}</span>
                 <p>{{ thing.subtitle }}</p>
             </li>
@@ -26,8 +26,7 @@ export default {
 
     async fetch({ store, error }) {
         try {
-            await store.dispatch('getProjects')
-            await store.dispatch('getThings')
+            await store.dispatch('getProjectsPage')
         } catch(err) {
             error({
                 statusCode: 500,
@@ -43,12 +42,8 @@ export default {
     },
 
     computed: {
-        projects() {
-            return this.$store.state.projects
-        },
-
-        reverseThings() {
-            return this.$store.state.things.slice().reverse();
+        projectsPage() {
+            return this.$store.state.projectsPage
         }
     },
 
