@@ -3,6 +3,10 @@
 }
 
 @media print {
+    html {
+        margin: 10mm;
+    }
+
     .links,
     footer,
     .no-print {
@@ -20,4 +24,9 @@
         page-break-before: page;
         break-before: page;
     }
+}
+
+@page {
+    size: auto;
+    margin: 0mm;
 }
