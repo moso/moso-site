@@ -1,0 +1,23 @@
+.print {
+    display: none;
+}
+
+@media print {
+    .links,
+    footer,
+    .no-print {
+        display: none !important;
+    }
+
+    .print {
+        display: block;
+    }
+
+    .break {
+        display: inline-block;
+        position: relative;
+        float: none;
+        page-break-before: page;
+        break-before: page;
+    }
+}
