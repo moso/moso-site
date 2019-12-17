@@ -16,23 +16,25 @@
             <li v-for="tool in resumePage.tools" :key="tool.id">{{ tool.item }}</li>
         </ul>
 
-        <h2>Contact</h2>
-        <div class="code-highlight">
-            <div>
-                <span class="blue">let</span>
-                $x
-                <span class="blue">=</span>
-                <span class="green">'morten'</span>
-            </div>
-            <div>
-                <span class="blue">let</span>
-                $y
-                <span class="blue">=</span>
-                <span class="green">'moso'</span>
-            </div>
-            <div>&nbsp;</div>
-            <div>
-                <span class="teal">console</span><span class="blue">.</span><span class="light-blue">log(</span>$x + <span class="green">'@'</span> + $y + <span class="green">'.io'</span><span class="light-blue">)</span>
+        <div class="no-print">
+            <h2>Contact</h2>
+            <div class="code-highlight">
+                <div>
+                    <span class="blue">let</span>
+                    $x
+                    <span class="blue">=</span>
+                    <span class="green">'morten'</span>
+                </div>
+                <div>
+                    <span class="blue">let</span>
+                    $y
+                    <span class="blue">=</span>
+                    <span class="green">'moso'</span>
+                </div>
+                <div>&nbsp;</div>
+                <div>
+                    <span class="teal">console</span><span class="blue">.</span><span class="light-blue">log(</span>$x + <span class="green">'@'</span> + $y + <span class="green">'.io'</span><span class="light-blue">)</span>
+                </div>
             </div>
         </div>
     </article>
