@@ -3,7 +3,7 @@
         <ul class="footer-icons">
             <li v-for="icon in icons" :key="icon.id">
                 <!-- eslint-disable-next-line vue/no-v-html -->
-                <a :href="icon.url"  target="_blank" :title="icon.name" :aria-label="icon.name" rel="noopener" v-html="icon.icon"></a>
+                <a :href="icon.url" target="_blank" :title="icon.name" :aria-label="icon.name" rel="noopener" v-html="icon.icon"></a>
             </li>
         </ul>
         <ul class="made-with">
