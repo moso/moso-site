@@ -10,6 +10,7 @@
             </li>
         </ul>
 
+
         <h2>I've also made things for...</h2>
         <ul class="list">
             <li v-for="thing in projectsPage.things" :key="thing.id">
@@ -17,10 +18,22 @@
                 <p>{{ thing.subtitle }}</p>
             </li>
         </ul>
+
+        <div class="print break">
+            <h2>Find me here</h2>
+            <ul class="list">
+                <li v-for="item in icons" :key="item.id">
+                    <span>{{ item.name }}:</span>
+                    <a :href="item.url" target="_blank" :title="item.name" :aria-label="item.name" rel="noopener">{{ item.url }}</a>
+                </li>
+            </ul>
+        </div>
     </article>
 </template>
 
 <script>
+import gql from 'graphql-tag'
+
 export default {
     layout: 'default',
 
@@ -37,6 +50,7 @@ export default {
 
     data() {
         return {
+            icons: [],
             pageTitle: 'Projects',
         }
     },
@@ -49,6 +63,24 @@ export default {
 
     mounted() {
         this.$store.commit('SET_PAGE_TITLE', this.pageTitle)
+
+        this.fetchData()
+    },
+
+    methods: {
+        async fetchData() {
+            this.icons = await this.$apollo.query({
+                query: gql` {
+                    icons {
+                        id
+                        name
+                        url
+                        icon
+                    }
+                }`
+            })
+            .then(({ data }) => data && data.icons)
+        }
     },
 
     head() {
