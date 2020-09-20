@@ -3,7 +3,7 @@ import { build, dev, env, manifest, meta } from './config'
 require('dotenv').config()
 
 export default {
-    mode: 'universal',
+    ssr: true,
     modern: !dev.isDev && 'client',
 
     watch: ['~/config/*'],
