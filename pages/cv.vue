@@ -44,6 +44,12 @@
 export default {
     layout: 'default',
 
+    data() {
+        return {
+            pageTitle: 'CV',
+        }
+    },
+
     async fetch({ store, error }) {
         try {
             await store.dispatch('getResumePage')
@@ -55,9 +61,9 @@ export default {
         }
     },
 
-    data() {
+    head() {
         return {
-            pageTitle: 'CV',
+            title: this.pageTitle + ' - moso.io'
         }
     },
 
@@ -69,12 +75,6 @@ export default {
 
     mounted() {
         this.$store.commit('SET_PAGE_TITLE', this.pageTitle)
-    },
-
-    head() {
-        return {
-            title: this.pageTitle + ' - moso.io'
-        }
     }
 }
 </script>

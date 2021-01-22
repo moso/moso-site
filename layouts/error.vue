@@ -17,14 +17,14 @@ export default {
         }
     },
 
-    mounted() {
-        this.$store.commit('SET_PAGE_TITLE', this.pageTitle)
-    },
-
     head() {
         return {
             title: this.pageTitle + ' - moso.io'
         }
+    },
+
+    mounted() {
+        this.$store.commit('SET_PAGE_TITLE', this.pageTitle)
     }
 }
 </script>
