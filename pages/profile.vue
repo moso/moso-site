@@ -16,6 +16,12 @@
 export default {
     layout: 'default',
 
+    data() {
+        return {
+            pageTitle: 'Profile',
+        }
+    },
+
     async fetch({ store, error }) {
         try {
             await store.dispatch('getProfilePage')
@@ -27,9 +33,9 @@ export default {
         }
     },
 
-    data() {
+    head() {
         return {
-            pageTitle: 'Profile',
+            title: this.pageTitle + ' - moso.io'
         }
     },
 
@@ -41,12 +47,6 @@ export default {
 
     mounted() {
         this.$store.commit('SET_PAGE_TITLE', this.pageTitle)
-    },
-
-    head() {
-        return {
-            title: this.pageTitle + ' - moso.io'
-        }
     }
 }
 </script>
