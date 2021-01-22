@@ -3,14 +3,13 @@
 </template>
 
 <script>
-import MosoProfile from '~/pages/profile.vue'
 
 export default {
-    layout: 'default',
-
     components: {
-        'moso-profile': MosoProfile
+        'moso-profile': () => import('~/pages/profile.vue')
     },
+
+    layout: 'default',
 
     data() {
         return {
@@ -18,14 +17,14 @@ export default {
         }
     },
 
-    mounted() {
-        this.$store.commit('SET_PAGE_TITLE', this.title)
-    },
-
     head() {
         return {
             title: this.title + ' - moso.io'
         }
+    },
+
+    mounted() {
+        this.$store.commit('SET_PAGE_TITLE', this.title)
     }
 }
 </script>

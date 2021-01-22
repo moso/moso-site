@@ -37,6 +37,13 @@ import gql from 'graphql-tag'
 export default {
     layout: 'default',
 
+    data() {
+        return {
+            icons: [],
+            pageTitle: 'Projects',
+        }
+    },
+
     async fetch({ store, error }) {
         try {
             await store.dispatch('getProjectsPage')
@@ -48,10 +55,9 @@ export default {
         }
     },
 
-    data() {
+    head() {
         return {
-            icons: [],
-            pageTitle: 'Projects',
+            title: this.pageTitle + ' - moso.io'
         }
     },
 
@@ -80,12 +86,6 @@ export default {
                 }`
             })
             .then(({ data }) => data && data.icons)
-        }
-    },
-
-    head() {
-        return {
-            title: this.pageTitle + ' - moso.io'
         }
     }
 }
